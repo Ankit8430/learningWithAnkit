@@ -1,0 +1,24 @@
+<template>
+    <lightning-card>
+        <template lwc:if={accounts}>
+            <lightning-layout horizontal-align="spread">
+                <lightning-layout-item flexibility="grow" padding="around-small">
+                    <lightning-input type='text' value={searchKey} onchange={handleSearchKey} placeholder="Search by Name"></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-datatable
+                key-field="Id"
+                data={accounts}
+                columns={columns}
+                hide-checkbox-column
+            ></lightning-datatable>
+            <div class="slds-m-top_medium">
+                <lightning-button variant="brand" label="Previous" onclick={handlePreviousButton} disabled={disablePrevious}></lightning-button>
+                <lightning-button variant="brand" label="Next" onclick={handleNextButton} disabled={disableNext}></lightning-button>
+            </div>
+        </template>
+        <template lwc:else>
+            <p>No Data</p>
+        </template>
+    </lightning-card>
+</template>

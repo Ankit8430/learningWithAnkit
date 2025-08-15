@@ -1,0 +1,17 @@
+<template>
+    <template lwc:if={isShowData}>
+        <lightning-card title="Calculate Total Price">
+            <lightning-input type="number" label="Unit Price" value={unitPrice} required onchange={handleUnitPriceChange}></lightning-input>
+            <lightning-input type="number" label="Quantity" value={quantity} required onchange={handleQuantityChange}></lightning-input>
+            <lightning-input type="number" label="Discount %" value={discount} required onchange={handleDiscountChange}></lightning-input>
+            <br/>
+            <lightning-button variant="brand" label="Calculate" onclick={getCalculatePrice}></lightning-button>
+        </lightning-card>
+    </template>
+    <template lwc:if={isTotalPrice}>
+        <lightning-card title="Total Price">
+            <b>Total Price:</b> {totalPrice}<br/>
+            <lightning-button variant="brand" label="Ok" onclick={handleSave}></lightning-button>
+        </lightning-card>
+    </template>
+</template>

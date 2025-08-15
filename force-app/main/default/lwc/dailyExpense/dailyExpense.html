@@ -1,0 +1,116 @@
+<template>
+    <lightning-card title="Daily Expense">
+        <div>
+            <lightning-card title="Show Spend">
+                <ul>
+                    <li>Total Spend of <b>{currentMonth}/Current Month</b> month: 
+                        <b>
+                            <lightning-formatted-number 
+                                value={totalAmountOfCurrentMonth}
+                                format-style="currency"
+                                currency-code="INR" 
+                            ></lightning-formatted-number>
+                        </b>
+                    </li>
+                    <li>Total Spend so far <b>{currentYear}/Current Year</b> Year:
+                        <b>
+                            <lightning-formatted-number 
+                                value={totalAmountOfCurrentYear}
+                                format-style="currency"
+                                currency-code="INR" 
+                            ></lightning-formatted-number>
+                        </b>
+                    </li>
+                    <li>Month with Max expenditure-
+                        <strong>{expenditureMonthName}:
+                            <lightning-formatted-number 
+                                value={expenditureTotalAmount}
+                                format-style="currency"
+                                currency-code="INR" 
+                            ></lightning-formatted-number>
+                        </strong>
+                    </li>
+                </ul>
+            </lightning-card>
+        </div>
+        <lightning-layout horizontal-align="space" vertical-align="center" multiple-rows>
+            <lightning-layout-item padding="around-small" size="2" small-device-size="4">
+                <lightning-combobox
+                        name="month"
+                        label="Select Month"
+                        value={selectedMonth}
+                        options={monthOptions}
+                        onchange={handleMonthChange}
+                ></lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="2" small-device-size="2">
+                <lightning-input 
+                    type="date"
+                    label="From Date"
+                    value={fromDate}
+                    onchange={handleFromDateChange}
+                ></lightning-input>    
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="2" small-device-size="2">
+                <lightning-input
+                    type="date"
+                    label="To Date"
+                    value={toDate}
+                    onchange={handleToDateChage}
+                ></lightning-input>
+            </lightning-layout-item>
+            <!--Button to add a new expense-->
+            <lightning-layout-item padding="around-small" size="2" small-device-size="2" class="slds-text-align_right">
+                <lightning-button 
+                    label="Add Expense" 
+                    variant="brand" 
+                    onclick={handleCreateExpense}>
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        <template lwc:if={isData}>
+            <template lwc:if={expenseList}>
+                <!-- Lightning Datatable to Show the expense data in the table formate -->
+                <lightning-datatable
+                key-field="Id"
+                columns={columns}
+                data={expenseList}
+                onrowaction={handleRowAction}
+                hide-checkbox-column
+                ></lightning-datatable>
+                <!-- To Show the Total Amount with INR Formate -->
+                <div class="slds-m-top_medium slds-text-align_right">
+                    <b>Total Amount: </b>
+                    <lightning-formatted-number value={totalAmount}
+                        format-style="currency"
+                        currency-code="INR"
+                    ></lightning-formatted-number>
+                </div>
+            </template>
+        </template>
+        <!-- Open the Modal according to Edit or Add Expense -->
+        <template lwc:if={isModalOpen}>
+                <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <h2 class="slds-text-heading_medium">{modalHeader}</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <lightning-record-edit-form record-id={IdToEditRecord} object-api-name={expenseObject} onsuccess={successHandler}>
+                                <lightning-input-field required field-name={nameField}></lightning-input-field>
+                                <lightning-input-field required field-name={categoryField}></lightning-input-field>
+                                <lightning-input-field required field-name={amountField}></lightning-input-field>
+                                <lightning-input-field required field-name={dateField}></lightning-input-field>
+                                <div class="slds-grid slds-grid_align-center slds-p-around_medium">
+                                    <div class="slds-m-top_medium">
+                                        <lightning-button variant="brand" type="submit" label="Save" class="slds-m-right-small"></lightning-button>
+                                        <lightning-button variant="neutral" label="Cancel" onclick={closeModal}></lightning-button>
+                                    </div>
+                                </div>
+                            </lightning-record-edit-form>
+                        </div>
+                    </div>
+                </section>
+        </template>
+    </lightning-card>
+</template>

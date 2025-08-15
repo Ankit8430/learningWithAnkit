@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Account Records">
+        <template lwc:if={accounts}>
+            <ul>
+                <template for:each={accounts} for:item="acc">
+                    <li key={acc.Id}>
+                        <p><b>Name: </b>{acc.Name}</p>
+                    </li>
+                </template>
+            </ul>
+        </template>
+    </lightning-card>
+</template>

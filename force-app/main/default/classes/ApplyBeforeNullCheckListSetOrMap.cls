@@ -43,4 +43,3 @@ public with sharing class ApplyBeforeNullCheckListSetOrMap {
         }
     }
 }
-
