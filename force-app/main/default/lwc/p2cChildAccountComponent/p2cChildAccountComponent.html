@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="p2c Child Account Component">
+        <template lwc:if={accounts}>
+            <template for:each={accounts} for:item="account">
+                <div key={account.id}>
+                    <strong>Name:</strong> {account.name} <br/>
+                    <strong>Phone:</strong> {account.phone}
+                    <hr/>
+                </div>
+            </template>
+        </template>
+    </lightning-card>   
+</template>

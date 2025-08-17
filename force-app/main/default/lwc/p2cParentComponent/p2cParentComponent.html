@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Parent to child communication Component">
+        <!-- <c-p2c-child-component
+            message="Hurray !! I got the data from parent component."
+            card-heading="Parent to Child Primitive data communication."
+            number="20"
+            is-valid
+        ></c-p2c-child-component> -->
+        <!-- <c-p2c-child-account-component
+            accounts={accountData}
+        ></c-p2c-child-account-component> -->
+        
+        <!-- <lightning-input type="number" label="Enter Percentage" onkeyup={changeHandler}></lightning-input>
+        <c-p2c-progress-child-component
+            progress-value={percentage}
+        ></c-p2c-progress-child-component> -->
+        
+        <lightning-button variant="brand" label="Reset Slider" onclick={handleClick}></lightning-button>
+        <c-p2c-slider-component></c-p2c-slider-component>
+    </lightning-card>
+</template>
