@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="getPicklistValuesByRecordType">
+        <div class="slds-var-p-around_medium">
+            <template lwc:if={ratingOptions}>
+                <lightning-combobox
+                    name="rating"
+                    label="Rating"
+                    value={selectedRating}
+                    placeholder="Select Rating"
+                    options={ratingOptions}
+                    onchange={handeChange}
+                ></lightning-combobox>
+                <div>selectedRating: {selectedRating}</div>
+            </template>
+            <template lwc:if={industryOptions}>
+                <lightning-combobox
+                    name="industry"
+                    label="Industry"
+                    value={selectedIndustry}
+                    placeholder="Select Industry"
+                    options={industryOptions}
+                    onchange={handeChange}
+                ></lightning-combobox>
+                <div>selectedIndustry: {selectedIndustry}</div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

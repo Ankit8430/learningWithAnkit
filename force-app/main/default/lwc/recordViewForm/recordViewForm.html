@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Lightning Record View Form">
+        <lightning-record-view-form
+        object-api-name={objectApiName}
+        record-id={recordId}
+        >
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_6-of-12">
+                <lightning-output-field field-name="Name"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_6-of-12">
+                <lightning-output-field field-name="Type"></lightning-output-field>
+            </div>
+        </div>
+        </lightning-record-view-form>
+    </lightning-card>
+</template>
