@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Apex Wire To Property Demo">
+        <template lwc:if={accounts.data}>
+            <template for:each={accounts.data} for:item="account">
+                <div class="slds-box slds-box_xx-small" key={account.Id}>
+                    <p><strong>Name: </strong>{account.Name}</p>
+                    <p><strong>Type: </strong>{account.Type}</p>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+    <lightning-card title="Apex Wire To Function Demo">
+        <template lwc:if={accountList}>
+            <template for:each={accountList} for:item="account">
+                <div class="slds-box slds-box_xx-small" key={account.Id}>
+                    <p><strong>Name: </strong>{account.Name}</p>
+                    <p><strong>Type: </strong>{account.newType}</p>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>
